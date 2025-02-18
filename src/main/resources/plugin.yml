@@ -1,0 +1,10 @@
+name: UHCThing
+version: '1.0'
+main: us.mudkip989.plugins.uHCThing.UHCThing
+load: POSTWORLD
+api-version: '1.21'
+commands:
+  uhc:
+    usage: /<command>
+    description: Empty Text.
+    aliases: []
