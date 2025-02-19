@@ -1,0 +1,38 @@
+# Details
+
+- Join (First)
+  - 
+  - [ ] Global Hold Box
+  - [ ] Setup Game Here
+  - 
+- Teams of 4 (Second)
+  - 
+  - [ ] Glass Boxed at start
+  - [ ] Assigned by vanilla command
+  - 
+- Start (Third)
+  - 
+  - [ ] Command?
+  - [ ] Finds player Teams
+  - [ ] Teleport to hold box.
+  - [ ] Hold boxes Scattered Randomly
+  - [ ] PVP Enables EP 2
+  - 
+- Items
+  - 
+  - [ ] Compass that points to loot
+  - [ ] Custom Structure for Netherite Armor?
+  - [ ] Revive Item?
+  - 
+- Border (Fifth)
+  - 
+  - [ ] Minecraft Border
+  - [ ] Shrinks over time. 
+  - [ ] Size? Speed?
+  - [ ] When Shrink? ***Every 30 Minutes.***
+  - 
+- Death (Fourth)
+  - 
+  - [ ] Player is put into spectator
+  - [ ] Removed from Team? No if Revive Item...Unless...
+  -
