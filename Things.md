@@ -2,21 +2,22 @@
 
 - Join (First)
   - 
-  - [ ] Global Hold Box
-  - [ ] Setup Game Here
+  - [x] Global Hold Box (Needs built first)
+  - [x] Setup Game Here
+  - [x] Join Message
   - 
 - Teams of 4 (Second)
-  - 
-  - [ ] Glass Boxed at start
-  - [ ] Assigned by vanilla command
+  -
+  - [x] Assigned by vanilla command
   - 
 - Start (Third)
   - 
   - [ ] Command?
   - [ ] Finds player Teams
+  - [ ] Glass Boxed at start
   - [ ] Teleport to hold box.
-  - [ ] Hold boxes Scattered Randomly
-  - [ ] PVP Enables EP 2
+  - [ ] Hold boxes Scattered in Circle
+  - [ ] PVP Enables EP 2 ***In 30 Minutes.***
   - 
 - Items
   - 

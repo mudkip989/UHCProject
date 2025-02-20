@@ -7,12 +7,20 @@ import us.mudkip989.plugins.uHCThing.event.*;
 
 public final class UHCThing extends JavaPlugin {
 
+    public static UHCThing instance;
+
+    public static Boolean hasStarted = false;
+
+    public static Boolean PVP = false;
+
     @Override
     public void onEnable() {
 
+        instance = this;
 
         this.saveDefaultConfig();
 
+        hasStarted = this.getConfig().getBoolean("Started");
 
         this.getCommand("uhc").setExecutor(new CommandListener());
 
