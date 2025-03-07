@@ -12,14 +12,14 @@
   - 
 - Start (Third)
   - 
-  - [ ] Command?
-  - [ ] Finds player Teams
-  - [ ] Glass Boxed at start
-  - [ ] Teleport to hold box.
-  - [ ] Hold boxes Scattered in Circle
-  - [ ] PVP Enables EP 2 ***In 30 Minutes.***
+  - [x] Command?
+  - [x] Finds player Teams
+  - [ ] Glass Boxed at start(Later)
+  - [ ] Teleport to hold box.(Later)
+  - [x] Hold boxes Scattered in Circle
+  - [ ] PVP Enables EP 2 ***In 30 Minutes.*** (Maybe 2nd Season)
   - 
-- Items
+- Items(Later Season)
   - 
   - [ ] Compass that points to loot
   - [ ] Custom Structure for Netherite Armor?
@@ -34,6 +34,6 @@
   - 
 - Death (Fourth)
   - 
-  - [ ] Player is put into spectator
+  - [x] Player is put into spectator
   - [ ] Removed from Team? No if Revive Item...Unless...
   -

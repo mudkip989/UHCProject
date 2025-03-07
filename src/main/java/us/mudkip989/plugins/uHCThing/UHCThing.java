@@ -1,7 +1,9 @@
 package us.mudkip989.plugins.uHCThing;
 
+import net.kyori.adventure.text.*;
 import org.bukkit.*;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.*;
 import us.mudkip989.plugins.uHCThing.Commands.*;
 import us.mudkip989.plugins.uHCThing.event.*;
 
@@ -10,6 +12,12 @@ public final class UHCThing extends JavaPlugin {
     public static UHCThing instance;
 
     public static Boolean hasStarted = false;
+
+    public static Boolean gameWon = false;
+
+    public static Integer ticksUntilBorderShrink = -1;
+
+    public static Integer borderStage = 0;
 
     public static Boolean PVP = false;
 
@@ -25,6 +33,27 @@ public final class UHCThing extends JavaPlugin {
         this.getCommand("uhc").setExecutor(new CommandListener());
 
         Bukkit.getPluginManager().registerEvents(new EventListener(), this);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+
+            if(ticksUntilBorderShrink < 1){
+                int level = instance.getConfig().getInt("WorldBorder."+String.valueOf(borderStage+1));
+                if(level != 0){
+                    Bukkit.getWorld("world").getWorldBorder().setSize(level, 600);
+                    Bukkit.broadcast(Component.text("The Border Shrinks..."));
+                    borderStage++;
+                }
+
+            }
+            ticksUntilBorderShrink--;
+
+//            Bukkit.getWorld("world").getWorldBorder().setSize();
+
+
+            }
+        }.runTaskTimerAsynchronously(this, 1, 1);
 
         // Plugin startup logic
 

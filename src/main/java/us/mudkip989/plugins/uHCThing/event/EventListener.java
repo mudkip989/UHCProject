@@ -1,6 +1,7 @@
 package us.mudkip989.plugins.uHCThing.event;
 
 import net.kyori.adventure.text.*;
+import net.kyori.adventure.text.format.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
@@ -9,6 +10,9 @@ import org.bukkit.event.player.*;
 import org.bukkit.event.world.*;
 import org.bukkit.scoreboard.*;
 import us.mudkip989.plugins.uHCThing.*;
+
+import java.util.*;
+import java.util.concurrent.atomic.*;
 
 public class EventListener implements Listener {
 
@@ -42,6 +46,43 @@ public class EventListener implements Listener {
             e.setCancelled(true);
 
         }
+
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent e){
+
+        e.setCancelled(true);
+        Player p = e.getPlayer();
+        p.setGameMode(GameMode.SPECTATOR);
+
+        Scoreboard sb = Bukkit.getScoreboardManager().getMainScoreboard();
+        long matchTeamcount = sb.getTeams().stream().filter(team -> team.getEntries().stream().filter(pstring -> p.equals(Bukkit.getPlayerExact(pstring))).count() >= 1).count();
+        if(matchTeamcount > 0){
+            Bukkit.broadcast(Component.text(p.getName()+ " has died.").color(TextColor.fromHexString("#ffaa00")));
+        }
+
+        AtomicInteger remainingTeams = new AtomicInteger();
+        List<Team> teamsRemaining = new ArrayList<>();
+        sb.getTeams().forEach(team -> {
+            if(team.getEntries().stream().filter(pstring -> (Bukkit.getPlayerExact(pstring).getGameMode() == GameMode.SURVIVAL)).count() <= 0){
+                remainingTeams.getAndIncrement();
+                teamsRemaining.add(team);
+            }
+
+        });
+        if(remainingTeams.get() <= 1){
+            Bukkit.broadcast(Component.text("Game Over. " + teamsRemaining.get(0).getName() + " won."));
+            UHCThing.hasStarted = false;
+            UHCThing.borderStage = 0;
+            UHCThing.ticksUntilBorderShrink = -1;
+            UHCThing.gameWon = true;
+            UHCThing.PVP = false;
+
+            //Game End here
+            //At this point Even If I dont finish the Boundary, it can be handled manually. 
+        }
+
 
     }
 

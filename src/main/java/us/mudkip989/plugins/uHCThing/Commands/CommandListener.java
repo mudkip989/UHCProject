@@ -5,6 +5,7 @@ import net.kyori.adventure.pointer.*;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
+import org.bukkit.potion.*;
 import org.bukkit.scoreboard.*;
 import org.jetbrains.annotations.*;
 import us.mudkip989.plugins.uHCThing.*;
@@ -18,7 +19,7 @@ public class CommandListener implements CommandExecutor {
 
         switch(strings[0]){
             case "start" -> {
-                Scoreboard sb =  Bukkit.getScoreboardManager().getMainScoreboard();
+                Scoreboard sb = Bukkit.getScoreboardManager().getMainScoreboard();
 
 
                 int teamCount = sb.getTeams().size();
@@ -37,7 +38,7 @@ public class CommandListener implements CommandExecutor {
                     int z = ((int) Math.floor(rad * Math.cos((teami / teamCount) * (Math.PI * 2)) / 16));
 
                     ChunkCords.add(Arrays.asList(x,z));
-
+                    Bukkit.getWorld("world").loadChunk(x,z);
 
 
                     //For each player
@@ -55,18 +56,23 @@ public class CommandListener implements CommandExecutor {
                     int memberi = 0;
                     for(Player p: members){
 
-                        //create box
+                        //create box (Another Season)
                         //teleport player
+                        int Spawnx = UHCThing.instance.getConfig().getInt("Spawn.x");
+                        int Spawnz = UHCThing.instance.getConfig().getInt("Spawn.z");
+                        p.teleport(new Location(Bukkit.getWorld("world"), Spawnx + rad * Math.sin((teami / teamCount) * (Math.PI * 2)), 255, Spawnz + rad * Math.cos((teami / teamCount) * (Math.PI * 2))));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 30, 255, true, false));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 30, 1, true, false));
                         memberi++;
                     }
 
                     teami++;
                 }
-
-
-
-
-
+                UHCThing.hasStarted = true;
+                UHCThing.borderStage = 0;
+                UHCThing.ticksUntilBorderShrink = 3600;
+                UHCThing.gameWon = false;
+                UHCThing.PVP = false;
 
             }
 
