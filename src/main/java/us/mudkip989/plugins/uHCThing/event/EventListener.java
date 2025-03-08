@@ -58,8 +58,10 @@ public class EventListener implements Listener {
 
         Scoreboard sb = Bukkit.getScoreboardManager().getMainScoreboard();
         long matchTeamcount = sb.getTeams().stream().filter(team -> team.getEntries().stream().filter(pstring -> p.equals(Bukkit.getPlayerExact(pstring))).count() >= 1).count();
+        sb.getTeams().stream().filter(team -> team.getEntries().stream().filter(pstring -> p.equals(Bukkit.getPlayerExact(pstring))).count() >= 1).forEach(team -> team.removePlayer(Bukkit.getOfflinePlayer(p.getUniqueId())));
         if(matchTeamcount > 0){
             Bukkit.broadcast(Component.text(p.getName()+ " has died.").color(TextColor.fromHexString("#ffaa00")));
+
         }
 
         AtomicInteger remainingTeams = new AtomicInteger();

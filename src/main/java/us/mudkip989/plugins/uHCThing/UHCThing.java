@@ -38,12 +38,15 @@ public final class UHCThing extends JavaPlugin {
             @Override
             public void run() {
 
-            if(ticksUntilBorderShrink < 1){
+            if(ticksUntilBorderShrink == 0){
                 int level = instance.getConfig().getInt("WorldBorder."+String.valueOf(borderStage+1));
                 if(level != 0){
-                    Bukkit.getWorld("world").getWorldBorder().setSize(level, 600);
+                    Bukkit.getWorld("world").getWorldBorder().setSize(level*2, instance.getConfig().getInt("WorldBorderTime."+String.valueOf(borderStage+1)));
+                    Bukkit.getWorld("world").getWorldBorder().setWarningDistance(500);
                     Bukkit.broadcast(Component.text("The Border Shrinks..."));
                     borderStage++;
+                    PVP = true;
+                    ticksUntilBorderShrink = 36000;
                 }
 
             }
@@ -53,7 +56,7 @@ public final class UHCThing extends JavaPlugin {
 
 
             }
-        }.runTaskTimerAsynchronously(this, 1, 1);
+        }.runTaskTimer(this, 1, 1);
 
         // Plugin startup logic
 
